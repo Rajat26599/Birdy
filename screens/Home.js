@@ -16,14 +16,26 @@ const Home = () => {
                 return <FontAwesome name="search" size={24} color={colors.gray} style={{marginLeft:15}} />
             },
             headerRight: () => {
-                return <Image
-                    source={require('../assets/chatBird.jpg')}
-                    style={{
-                        width: 40,
-                        height: 40,
+                return <TouchableOpacity
+                    onPress={() => navigation.navigate("Profile")}
+                    style={{ 
+                        height:40, 
+                        width:40, 
                         marginRight: 15,
+                        borderRadius: 25,
+                        borderWidth: 1,
+                        borderColor: colors.gray,
+                        overflow: 'hidden',
                     }}
-                />
+                >
+                    <Image
+                        source={require('../assets/chatBird.jpg')}
+                        style={{
+                            width: 40,
+                            height: 40,
+                        }}
+                    />
+                </TouchableOpacity>
             }
         }, [navigation]);
     });

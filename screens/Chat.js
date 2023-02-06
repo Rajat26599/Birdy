@@ -13,6 +13,7 @@ export default function Chat(){
 
     const [ messages, setMessages ] = useState([]);
     const navigation = useNavigation();
+    console.log(auth);
 
     const onSignOut = () => {
         signOut(auth).catch(err => console.log(err));
@@ -60,8 +61,10 @@ export default function Chat(){
         <GiftedChat 
             messages={messages}
             onSend={messages => onSend(messages)}
+            renderUsernameOnMessage={true}
             user={{
                 _id: auth?.currentUser?.email,
+                name: auth?.currentUser?.displayName,
                 avatar: 'https://i.pravatar.cc/300',
             }}    
             messagesContainerStyle={{

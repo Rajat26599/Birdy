@@ -15,6 +15,7 @@ import { useState } from 'react';
 import { useContext } from 'react';
 import { useEffect } from 'react';
 import { ActivityIndicator } from 'react-native';
+import Profile from './screens/Profile';
 
 const Stack = createNativeStackNavigator();
 const AuthenticatedUserContext = createContext({});
@@ -33,6 +34,7 @@ function ChatStack(){
     <Stack.Navigator defaultScreenOptions={Home} >
       <Stack.Screen name="Home" component={Home} />
       <Stack.Screen name="Chat" component={Chat} />
+      <Stack.Screen name="Profile" component={Profile} />
     </Stack.Navigator>
   )
 }
