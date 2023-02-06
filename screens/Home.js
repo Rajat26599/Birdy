@@ -10,11 +10,20 @@ const Home = () => {
 
     useEffect(() => {
         navigation.setOptions({
+            headerTitle: 'Birdy',
+            headerTitleAlign: 'center',
             headerLeft: () => {
-                <FontAwesome name="search" size={24} color={colors.gray} style={{marginLeft:15}} />
+                return <FontAwesome name="search" size={24} color={colors.gray} style={{marginLeft:15}} />
             },
             headerRight: () => {
-            
+                return <Image
+                    source={require('../assets/chatBird.jpg')}
+                    style={{
+                        width: 40,
+                        height: 40,
+                        marginRight: 15,
+                    }}
+                />
             }
         }, [navigation]);
     });
@@ -22,8 +31,8 @@ const Home = () => {
     return (
         <View style={styles.container}>
             <TouchableOpacity
-                onPress={() => navigation.navigate("chat")}
-                styles={styles.chatButton}
+                onPress={() => navigation.navigate("Chat")}
+                style={styles.chatButton}
             >
                 <Entypo name="chat" size={24} color={colors.lightGray} />
             </TouchableOpacity>
@@ -46,14 +55,16 @@ const styles = StyleSheet.create({
         width: 50,
         borderRadius: 25,
         alignItems: 'center',
+        justifyContent: 'center',
         shadowColor: colors.primary,
         shadowOffset: {
             width: 0,
             height: 2,
         },
-        shadowOpacity: .9,
         shadowRadius: 8,
+        shadowOpacity: .9,
+        elevation: 3,
         marginRight: 20,
-        marginBottom: 50
+        marginBottom: 50,
     }
 })

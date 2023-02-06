@@ -1,10 +1,11 @@
 import { useState } from 'react';
-import { Alert, StyleSheet, Text, View } from 'react-native';
+import { Alert, StyleSheet, Text, View, Image } from 'react-native';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../config/firebase';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { TextInput } from 'react-native-gesture-handler';
-import { TouchableOpacity } from 'react-native-web';
+import { TouchableOpacity } from 'react-native';
+import colors from '../colors';
 
 export default function Login({ navigation }){
     const [ email, setEmail ] = useState("");
@@ -19,6 +20,10 @@ export default function Login({ navigation }){
     };
     return (
         <View style={styles.container}>
+            <Image
+                style={styles.backImg}
+                source={require('../assets/birdBackground.jpg')}
+            />
             <View style={styles.whiteSheet} />
             <SafeAreaView style={styles.form}>
                 <Text style={styles.title}>Login</Text>
@@ -37,7 +42,7 @@ export default function Login({ navigation }){
                     style={styles.input}
                     placeholder="Enter password"
                     autoCapitalize='none'
-                    autoCorrect='false'
+                    autoCorrect={false}
                     textContentType='password'
                     secureTextEntry={true}
                     value={password}
@@ -49,7 +54,7 @@ export default function Login({ navigation }){
                 </TouchableOpacity>
                 <View style={{marginTop:20, flexDirection:'row', alignItems:'center', alignSelf:'center'}}>
                     <Text style={{color:'gray', fontWeight:'600', fontSize:14}}>Don't have an account?</Text>
-                    <TouchableOpacity onPress={() => navigation.navigate('signup')}>
+                    <TouchableOpacity onPress={() => navigation.navigate('Signup')}>
                         <Text style={{color:'#f57c00', fontWeight:'600', fontSize:14}}> Sign Up</Text>
                     </TouchableOpacity>
                 </View>
@@ -68,15 +73,23 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         color: "orange",
         alignSelf: "center",
-        paddingBottom: 24
+        paddingBottom: 24,
+        paddingTop: 60,
     },
     input: {
-        backgroundColor: "f6f7fb",
+        backgroundColor: colors.mediumGray,
         height: 50,
         marginBottom: 20,
         fontSize: 16,
         borderRadius: 10,
         padding: 12
+    },
+    backImg: {
+        width: '100%',
+        height: 260,
+        position: 'absolute',
+        top: 0,
+        resizeMode: 'cover',
     },
     whiteSheet: {
         width: '100%',

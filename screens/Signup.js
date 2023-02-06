@@ -1,10 +1,11 @@
 import { useState } from 'react';
-import { Alert, StyleSheet, Text, View } from 'react-native';
+import { Alert, StyleSheet, Text, View, Image, KeyboardAvoidingView } from 'react-native';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../config/firebase';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { TextInput } from 'react-native-gesture-handler';
 import { TouchableOpacity } from 'react-native';
+import colors from '../colors';
 
 export default function Signup({ navigation }){
     const [ email, setEmail ] = useState("");
@@ -12,6 +13,7 @@ export default function Signup({ navigation }){
 
     const onHandleSignup = () => {
         if(email != "" && password != ""){
+            console.log("inside handle signup")
             createUserWithEmailAndPassword(auth, email, password)
                 .then(() => console.log("Signup Successful"))
                 .catch((err) => Alert.alert("Signup error", err.message));
@@ -19,6 +21,10 @@ export default function Signup({ navigation }){
     };
     return (
         <View style={styles.container}>
+            <Image
+                style={styles.backImg}
+                source={require('../assets/birdBackground.jpg')}
+            />
             <View style={styles.whiteSheet} />
             <SafeAreaView style={styles.form}>
                 <Text style={styles.title}>Signup</Text>
@@ -68,15 +74,23 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         color: "orange",
         alignSelf: "center",
-        paddingBottom: 24
+        paddingBottom: 24,
+        paddingTop: 60,
     },
     input: {
-        backgroundColor: "f6f7fb",
+        backgroundColor: colors.mediumGray,
         height: 50,
         marginBottom: 20,
         fontSize: 16,
         borderRadius: 10,
-        padding: 12
+        padding: 12,
+    },
+    backImg: {
+        width: '100%',
+        height: 260,
+        position: 'absolute',
+        top: 0,
+        resizeMode: 'cover',
     },
     whiteSheet: {
         width: '100%',
